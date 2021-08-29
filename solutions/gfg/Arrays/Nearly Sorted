@@ -1,0 +1,33 @@
+#define ll int
+class Solution{
+public:
+    void buildHeap(vector<ll>& arr, ll l, ll r){
+       ll largest=l;
+       ll left=2*l+1;
+       ll right=2*l+2;
+       if(left<r && arr[left]>arr[largest]){
+           largest=left;
+       }
+       if(right<r && arr[right]>arr[largest]){
+           largest=right;
+       }
+       if(largest!=l){
+           swap(arr[l], arr[largest]);
+           buildHeap(arr, largest, r);
+       }
+    }
+    public:
+    //Function to return the sorted array.
+    vector <int> nearlySorted(int arr[], int n, int K){
+        // Your code here
+        vector<ll> ans(arr, arr+n);
+        for(ll i=n/2-1;i>=0;i--){
+        buildHeap(ans,i, n); 
+        }
+        for(ll i=n-1;i>=0;i--){
+            swap(ans[0], ans[i]);
+            buildHeap(ans, 0, i);
+        }
+        return ans;
+    }
+    };
