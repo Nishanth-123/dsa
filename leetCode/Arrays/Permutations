@@ -1,0 +1,24 @@
+#define ll int
+class Solution {
+public:
+    void fillAns(vector<ll> arr, ll pos,vector<vector<ll>>& ans){
+        ll n=arr.size();
+        if(pos==n-1){
+            ans.push_back(arr);
+            return;
+        }
+        fillAns(arr, pos+1,ans); 
+        for(ll i=pos+1;i<n;i++){
+            swap(arr[pos], arr[i]);
+            fillAns(arr, pos+1,ans);
+            swap(arr[pos], arr[i]);
+        }
+        
+    } 
+public:
+    vector<vector<int>> permute(vector<int>& arr) {
+        vector<vector<ll>>ans;
+        fillAns(arr, 0, ans);
+        return ans;
+    }
+};
