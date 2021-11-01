@@ -1,0 +1,16 @@
+#define ll int
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string str=to_string(x);
+        if(str[0]=='-')return false;
+        ll l=0, r=str.size()-1;
+        while(l<=r){
+            if(str[l]!=str[r])
+                return false;
+            l++;
+            r--;
+        }
+        return true;
+    }
+};
