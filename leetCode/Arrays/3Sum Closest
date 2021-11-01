@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll int
+class Solution {
+public:
+    int threeSumClosest(vector<int>& arr, int target) {
+      // lets a, b, c are three numbers.
+      // from the question, it is clear that
+      // a+b+c must be as much as close to target
+      // ==>a+b+c-target should be close to 0
+      // (a-target)+b+c should be close to 0
+      // outer for loop with a as constant taken one at a time 
+      // inner for loop with b,d for the respective a and choosing final answer from n^(2) iterations
+      
+      ll a,b, c, n=arr.size();
+      sort(arr.begin(), arr.end());
+      ll diff=INT_MAX;
+      ll ans;  
+      for(ll i=0;i<n;i++){
+         ll l=0, r=n-1;
+          while(l<r){
+              if(l==i)l++;
+              else if(r==i)r--;
+              if(l>=r)break;
+              ll sum=(arr[i]-target)+arr[l]+arr[r];
+              if(sum==0)return target;
+              ll absDiff=abs(sum);
+              if(diff>absDiff){
+                  diff=absDiff;
+                  ans=sum;
+              }
+              if(sum>0)r--;
+              else l++;
+                  
+          }
+      }  
+      return ans+target;  
+    }
+};
