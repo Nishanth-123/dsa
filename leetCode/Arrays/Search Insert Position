@@ -1,0 +1,20 @@
+#define ll int
+class Solution {
+
+public:
+  ll findPos(vector<ll>& arr,ll l , ll r, ll num ){
+      ll mid=(l+r)/2;
+      if(arr[mid]==num) return mid;
+      else if(arr[mid]>num){
+          if(mid==l || arr[mid-1]<num) return mid;
+          else return findPos(arr, l, mid-1, num);
+      }else{
+          if(mid==r || arr[mid+1]>num)return mid+1;
+          else return findPos(arr, mid+1, r,num);
+      }
+  }  
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        return findPos(nums, 0, nums.size()-1,target);
+    }
+};
