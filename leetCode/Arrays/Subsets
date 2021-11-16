@@ -1,0 +1,22 @@
+#define ll int
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<ll>> ans;
+      ll l=nums.size();
+      for(ll i=0;i<pow(2,l);i++){
+          ll num=i;
+          ll ind=l-1;
+          vector<ll> bit;
+          while(num){
+              if(num%2){
+                  bit.push_back(nums[ind]);
+              }
+              ind--;
+              num/=2;
+          }
+          ans.push_back(bit);
+      }  
+        return ans;
+    }
+};
