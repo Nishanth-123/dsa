@@ -1,0 +1,31 @@
+#define ll int
+class Solution {
+public:
+    ll findRow(vector<vector<ll>>& arr, ll l, ll h, ll num){
+       if(l==h)return l; 
+       ll mid= l+(h-l)/2;
+       if(num>=arr[mid][0] && (mid+1>h || arr[mid+1][0]>num)  ) return mid;
+       else if(arr[mid][0]>num)return findRow(arr, l, mid-1, num);
+        else return findRow(arr, mid+1, h, num);
+    }
+public:
+    ll findCol(vector<ll>& arr, ll l, ll h, ll num){
+        if(l>h)return -1;
+      ll mid= l+(h-l)/2;
+       if(num==arr[mid]) return mid;
+       else if(arr[mid]>num)return findCol(arr, l, mid-1, num);
+        else return findCol(arr, mid+1, h, num);  
+    }
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int num) {
+       ll m= matrix.size();
+       ll n= matrix[0].size();
+     if(num<matrix[0][0] || num>matrix[m-1][n-1]) return false;
+                                            
+      ll row=findRow(matrix, 0, m-1,num );
+        cout<<row<<endl;
+      ll ind=findCol(matrix[row], 0,n-1, num);
+       if(ind!=-1)return true;
+       return false;
+    }
+};
