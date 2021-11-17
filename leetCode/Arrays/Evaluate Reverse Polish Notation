@@ -1,0 +1,55 @@
+#define ll long long int
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+       stack<ll> stk;
+        ll n=tokens.size();
+        for(ll i=0;i<n;i++){
+            char ch=tokens[i][0];
+            if(ch=='+'){
+                ll s=stk.top();
+                stk.pop();
+                ll f=stk.top();
+                stk.pop();
+                stk.push(f+s);
+            }else if(ch=='-' && tokens[i].size()==1){
+                ll s=stk.top();
+                stk.pop();
+                ll f=stk.top();
+                stk.pop();
+                stk.push(f-s);
+            }else if(ch=='*'){
+                ll s=stk.top();
+                stk.pop();
+                ll f=stk.top();
+                stk.pop();
+                stk.push(f*s);
+                
+            }else if(ch=='/'){
+                
+                ll s=stk.top();
+                stk.pop();
+                ll f=stk.top();
+                stk.pop();
+                stk.push(f/s);
+            }else{
+               string str=tokens[i];
+               bool isNeg=0;
+                ll num=0;
+                if(str[0]=='-')isNeg=1;
+                else{
+                  ll d=str[0]-'0';
+                  num=(10*num)+d;  
+                }
+                for(ll j=1;j<str.size();j++){
+                    ll d=str[j]-'0';
+                    num=(10*num)+d;
+                    
+                }
+                if(isNeg)num*=-1;
+                stk.push(num);
+            }
+        }
+        return stk.top();
+    }
+};
