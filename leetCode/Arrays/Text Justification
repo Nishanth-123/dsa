@@ -9,27 +9,21 @@ public:
         vector<string> strs;
         ll s=0;
         for(ll i=0;i<words.size();i++){
-            if(strs.size()==0){
-                currsize+=words[i].size();
-                s+=words[i].size();
-                strs.push_back(words[i]);
-                
-            }else if(currsize+1+words[i].size()<=maxWidth){
+            if(strs.size()!=0){
+                if(currsize+1+words[i].size()<=maxWidth){
                 currsize+=1;
-                currsize+=words[i].size();
-                s+=words[i].size();
-                strs.push_back(words[i]);
             }else{
                 arr.push_back(strs);
                 sizes.push_back(s);
                 strs.clear();
                 currsize=0;
                 s=0;
-                currsize+=words[i].size();
+            }
+                              }
+                 currsize+=words[i].size();
                 s+=words[i].size();
                 strs.push_back(words[i]);
-            }
-        }
+        } 
         if(!strs.empty()){arr.push_back(strs);sizes.push_back(s);}
         for(ll i=0;i<arr.size();i++){
             ll spaces=maxWidth-sizes[i];
