@@ -1,0 +1,60 @@
+#define ll int
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> ans;
+        vector<vector<string>> arr;
+        vector<ll> sizes;
+        ll currsize=0;
+        vector<string> strs;
+        ll s=0;
+        for(ll i=0;i<words.size();i++){
+            if(strs.size()==0){
+                currsize+=words[i].size();
+                s+=words[i].size();
+                strs.push_back(words[i]);
+                
+            }else if(currsize+1+words[i].size()<=maxWidth){
+                currsize+=1;
+                currsize+=words[i].size();
+                s+=words[i].size();
+                strs.push_back(words[i]);
+            }else{
+                arr.push_back(strs);
+                sizes.push_back(s);
+                strs.clear();
+                currsize=0;
+                s=0;
+                currsize+=words[i].size();
+                s+=words[i].size();
+                strs.push_back(words[i]);
+            }
+        }
+        if(!strs.empty()){arr.push_back(strs);sizes.push_back(s);}
+        for(ll i=0;i<arr.size();i++){
+            ll spaces=maxWidth-sizes[i];
+            string str="";
+            if(arr[i].size()==1 || i==arr.size()-1){
+                
+                for(ll j=0;j<arr[i].size();j++){
+                    if(j!=0)str+=' ';
+                    str+=arr[i][j];
+                }
+                while(str.size()<maxWidth)str+=' ';
+            }else{
+             ll minGap=spaces/(arr[i].size()-1);
+             ll extraGaps= spaces%(arr[i].size()-1);  
+              for(ll j=0;j<arr[i].size();j++){
+                    if(j!=0){
+                        for(ll z=1;z<=minGap;z++)str+=' ';
+                        if(extraGaps>0){str+=' '; extraGaps--;}
+                    }
+                    
+                    str+=arr[i][j];
+                } 
+            }
+            ans.push_back(str);
+        }
+        return ans;
+    }
+};
