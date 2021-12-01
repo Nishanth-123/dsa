@@ -1,0 +1,25 @@
+#define ll unsigned int
+class Solution {
+public:
+    int maxProduct(vector<string>& arr) {
+        vector<ll> bitmaps;
+        ll ans=0;
+        ll m=arr.size();
+        for(auto w:arr){
+            ll bitmap=0;
+            for(auto ch:w){
+                bitmap|=1<<(ch-'a');
+            }
+            bitmaps.push_back(bitmap);
+        }
+        for(ll i=0;i<m;i++){
+            for(ll j=i+1;j<m;j++){
+                if((bitmaps[i] & bitmaps[j])==0){
+                    ll prod=arr[i].size()*arr[j].size();
+                    if(prod>ans)ans=prod;
+                }
+            }
+        }
+        return ans;
+    }
+};
