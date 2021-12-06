@@ -1,0 +1,33 @@
+#define ll int
+class Solution {
+public:
+    void find(string curr, ll pos,string& digits,  map<char, string>& mp, vector<string>& ans ){
+       if(pos>=digits.size()){
+           if(curr!="")
+           ans.push_back(curr);
+           return;
+       } 
+        string chars=mp[digits[pos]];
+           for(ll i=0;i<chars.size();i++){
+               find(curr+chars[i],pos+1,digits, mp,ans);
+           }
+        
+    }
+public:
+    vector<string> letterCombinations(string digits) {
+        map<char, string> mp;
+        mp.insert({'2',"abc"});
+        mp.insert({'3',"def"});
+        mp.insert({'4',"ghi"});
+        mp.insert({'5',"jkl"});
+        mp.insert({'6',"mno"});
+        mp.insert({'7',"pqrs"});
+        mp.insert({'8',"tuv"});
+        mp.insert({'9',"wxyz"});
+        vector<string> ans;
+        string curr="";
+        ll pos=0;
+        find(curr, pos,digits, mp, ans);
+     return ans;
+    }
+};
