@@ -1,0 +1,21 @@
+#define ll int
+class Solution {
+
+public:
+    static bool comp(ll one, ll two){
+        string s1=to_string(one);
+        string s2=to_string(two);
+        return s1+s2>s2+s1;
+    }
+public:
+    string largestNumber(vector<int>& nums) {
+       sort(nums.begin(),nums.end(),Solution::comp);
+        string ans="";
+        for(ll i=0;i<nums.size();i++){
+            if(ans=="0" && to_string(nums[i])=="0")continue;
+            ans+=to_string(nums[i]);
+        }
+        if(ans[0]=='0' )return "0";
+        return ans;
+    }
+};
