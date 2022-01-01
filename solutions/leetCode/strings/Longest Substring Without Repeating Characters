@@ -1,0 +1,24 @@
+#define ll int
+class Solution {
+public:    
+    int lengthOfLongestSubstring(string s) {
+        ll ans=0,n=s.size();
+        if(n==0)return 0;
+        map<char, ll>mp;
+        ll left=0,right=0;
+        while(right<n){
+            
+            if(mp.find(s[right])!=mp.end()){
+               ll newLeft=mp[s[right]]+1;
+                while(left<newLeft){
+                    mp.erase(s[left]);
+                    left++;
+                } 
+            }
+                mp[s[right]]=right;
+                ans=max(ans, right-left+1);
+                right++;
+        }
+        return ans;
+    }
+};
