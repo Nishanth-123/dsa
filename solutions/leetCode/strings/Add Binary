@@ -1,0 +1,52 @@
+#define ll int
+class Solution {
+public:
+    string filter(string& a){
+        for(ll i=0;i<a.size();i++){
+            if(a[i]!=0){
+                return a.substr(i);
+            }
+        }
+        return "0";
+    }
+public:
+    string addBinary(string a, string b) {
+        ll f=a.size()-1, s=b.size()-1, rem=0,firstNonZero;
+            while(f>=0 && s>=0){
+                ll sum=rem;
+                if(a[f]=='1')sum+=1;
+                if(b[s]=='1')sum+=1;
+                rem=sum/2;
+                sum%=2;
+                a[f]=sum+'0';
+                b[s]=a[f];
+                f--;
+                s--;
+            }
+            if(f>=0){
+                while(f>=0){
+                ll sum=rem;
+                if(a[f]=='1')sum+=1;
+                rem=sum/2;
+                sum%=2;
+                a[f]=sum+'0';   
+                f--;
+                }
+                if(rem!=0)a="1"+a;
+                return filter(a);
+            }
+            else{
+                while(s>=0){
+                ll sum=rem;
+                if(b[s]=='1')sum+=1;
+                rem=sum/2;
+                sum%=2;
+                b[s]=sum+'0';    
+                s--;
+                }
+                if(rem!=0)b="1"+b;
+                return filter(b);
+            }
+             
+    }
+};
