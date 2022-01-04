@@ -1,0 +1,14 @@
+1) 4th jan 2022:
+ https://leetcode.com/problems/complement-of-base-10-integer/
+ 
+ remark : was able to solve
+ learnings :
+  * https://leetcode.com/problems/complement-of-base-10-integer/discuss/1666808/C%2B%2B-or-0-ms-or-100-or-Without-bit-manipulation-or-beginner-friendly
+    
+     learned stoi function , different approach using vector, stoi func.
+     
+  * https://leetcode.com/problems/complement-of-base-10-integer/discuss/1666827/simple-and-faster-c%2B%2B-solution
+     
+     learned a different approach, calculating answer while traversing itself
+     
+ 
