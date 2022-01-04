@@ -1,0 +1,13 @@
+#define ll long long int
+class Solution {
+public:
+    ll bitwiseComplement(ll n) {
+        if(n==0)return 1;
+        ll bits=0,num=n;
+        while(n){
+            bits++;
+            n/=2;
+        }
+      return (pow(2,bits)-1)-num;  
+    }
+};
